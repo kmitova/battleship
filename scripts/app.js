@@ -1,6 +1,6 @@
-// console.log("testing");
+console.log("testing");
 
-// function sum(a, b) {
-//   return a + b;
-// }
-// export { sum };
+function sum(a, b) {
+  return a + b;
+}
+export { sum };
