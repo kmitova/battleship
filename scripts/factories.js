@@ -53,13 +53,51 @@ function Gameboard() {
   };
 }
 
-const board = Gameboard();
-const ship = Ship(3);
-// ship.coordinates = [5, 4];
-board.ships.ship = [5, 4];
-// board.ships.carrier = [5, 4, 4, 2];
-board.receiveAttack(5, 4);
-// console.log(board.ships.carrier);
-// console.log(board.ships.carrier.includes([5, 4]));
+// const board = Gameboard();
+// const ship = Ship(3);
+// // ship.coordinates = [5, 4];
+// board.ships.ship = [5, 4];
+// // board.ships.carrier = [5, 4, 4, 2];
+// board.receiveAttack(5, 4);
+// // console.log(board.ships.carrier);
+// // console.log(board.ships.carrier.includes([5, 4]));
 
-export { Ship, Gameboard };
+function Player(name) {
+  return {
+    name,
+    computerIsPlaying: false,
+    isComputer: function () {
+      if (!this.isComputerCheck) {
+        this.computerIsPlaying = true;
+      }
+    },
+    hasCurrentTurn: true,
+    changeTurn: function () {
+      if (this.hasCurrentTurn) {
+        this.hasCurrentTurn = false;
+      } else {
+        this.hasCurrentTurn = true;
+      }
+    },
+    winsGame: false,
+    points: 0,
+    // the total points are 17 (5 + 4 + 3 + 3 + 2)
+    addScores: function (computerIsPlaying) {
+      if (computerIsPlaying) {
+        this.points += 1;
+      } else {
+        this.points += 1;
+      }
+      if (this.points >= 17) {
+        this.winsGame = true;
+      }
+    },
+    // gameOver: function(winsGame) {
+    //   if (this.winsGame) {
+
+    //   }
+    // }
+  };
+}
+
+export { Ship, Gameboard, Player };

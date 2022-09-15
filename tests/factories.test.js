@@ -1,4 +1,20 @@
-import { Ship, Gameboard } from "../scripts/factories.js";
+import { Ship, Gameboard, Player } from "../scripts/factories.js";
+
+describe("test player function", () => {
+  const player = Player();
+  const computer = Player();
+  test("function is defined", () => {
+    expect(player).toBeDefined();
+    expect(player.hasCurrentTurn).toBeTruthy();
+    player.changeTurn();
+    expect(player.hasCurrentTurn).toBeFalsy();
+    computer.isComputer();
+    expect(computer.computerIsPlaying).toBeTruthy();
+    player.points = 17;
+    player.addScores();
+    expect(player.winsGame).toBeTruthy();
+  });
+});
 
 describe("test gameboard factory", () => {
   const board = Gameboard();
