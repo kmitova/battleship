@@ -10,7 +10,6 @@ function generatePlayerGrid() {
     cell.setAttribute("id", i);
     playerGrid.appendChild(cell).className = "player-grid-item";
     i++;
-    console.log(i);
   }
 }
 
@@ -23,10 +22,41 @@ function generateComputerGrid() {
     cell.setAttribute("id", i);
     computerGrid.appendChild(cell).className = "computer-grid-item";
     i++;
-    console.log(i);
   }
 }
 // for player grid: id from 1 to 100
 generatePlayerGrid();
 // for computer grid: id from 101 to 201
 generateComputerGrid();
+
+const playerCells = Array.from(document.querySelectorAll(".player-grid-item"));
+console.log("test");
+playerCells.forEach((cell) => {
+  cell.addEventListener("mouseover", (e) => {
+    cell.style.backgroundColor = "blue";
+    console.log("on cell");
+  });
+
+  cell.addEventListener("click", () => {
+    cell.style.backgroundColor = "red";
+  });
+  // TO MAKE THE RED STAY: MAYBE DISABLE EVENTS UNTIL THE COMPUTER HAS PLAYED
+  // cell.addEventListener("mouseout", (e) => {
+  //   cell.style.backgroundColor = "white";
+  //   console.log("out of cell");
+  // });
+});
+
+// function mouseIn(cell) {
+//   cell.style.backgroundColor = "blue";
+//     console.log("on cell");
+// }
+
+// playerCells.forEach((cell) => {
+//   cell.addEventListener("mouseout", (e) => {
+//     cell.style.backgroundColor = "white";
+//     console.log("out of cell");
+//   });
+// });
+
+// console.log(playerCells);
