@@ -30,7 +30,20 @@ generatePlayerGrid();
 generateComputerGrid();
 
 const playerCells = Array.from(document.querySelectorAll(".player-grid-item"));
-console.log("test");
+
+playerCells.forEach((cell) => {
+  cell.addEventListener("click", () => {
+    let currentId = cell.id;
+    console.log(cell.id);
+    let nextId = Number(currentId) + 1;
+    console.log(nextId);
+    let nextEl = document.getElementById(nextId);
+    console.log(nextEl);
+    cell.style.backgroundColor = "red";
+    nextEl.style.backgroundColor = "red";
+  });
+});
+
 playerCells.forEach((cell) => {
   cell.addEventListener("mouseover", (e) => {
     cell.style.backgroundColor = "blue";
@@ -46,17 +59,3 @@ playerCells.forEach((cell) => {
   //   console.log("out of cell");
   // });
 });
-
-// function mouseIn(cell) {
-//   cell.style.backgroundColor = "blue";
-//     console.log("on cell");
-// }
-
-// playerCells.forEach((cell) => {
-//   cell.addEventListener("mouseout", (e) => {
-//     cell.style.backgroundColor = "white";
-//     console.log("out of cell");
-//   });
-// });
-
-// console.log(playerCells);
