@@ -265,7 +265,248 @@ function carrierPlacement() {
   });
 }
 
-carrierPlacement();
+// carrierPlacement();
+
+// 0. get array of computer cells
+const computerCells = Array.from(
+  document.querySelectorAll(".computer-grid-item")
+);
+console.log(computerCells);
+
+// 1. get random number for cell for computer and change class name of clicked cell and (for now) add color which will be removed for the game
+
+function getRandomIntInclusive(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1) + min); // The maximum is inclusive and the minimum is inclusive
+}
+
+function computerDestroyerPlacement() {
+  let shipPlaced = false;
+  while (!shipPlaced) {
+    let selectedCellId = getRandomIntInclusive(101, 200);
+    console.log(selectedCellId);
+    let cell = document.getElementById(selectedCellId);
+    console.log(cell);
+
+    // cell.addEventListener("click", () => {
+    // let currentId = cell.id;
+    // console.log(cell.id);
+
+    let nextId;
+    if (selectedCellId % 10 === 0) {
+      nextId = Number(selectedCellId) - 1;
+    } else {
+      nextId = Number(selectedCellId) + 1;
+    }
+    console.log(nextId);
+    let nextEl = document.getElementById(nextId);
+    console.log(nextEl);
+    if (
+      cell.style.backgroundColor !== "red" &&
+      nextEl.style.backgroundColor !== "red"
+    ) {
+      cell.style.backgroundColor = "red";
+      nextEl.style.backgroundColor = "red";
+      shipPlaced = true;
+    }
+
+    // LATER ENABLE WITH A FOR EACH LOOP FOR EACH CELL ELEMENT
+    // cell.disabled = true;
+    // nextEl.disabled = true;
+  }
+}
+function computerCruiserPlacement() {
+  let shipPlaced = false;
+  while (!shipPlaced) {
+    let selectedCellId = getRandomIntInclusive(101, 200);
+    console.log(selectedCellId);
+    let cell = document.getElementById(selectedCellId);
+    console.log(cell);
+
+    let nextId;
+    let nextId2;
+    if (selectedCellId % 10 === 0 || selectedCellId % 10 === 9) {
+      nextId = Number(selectedCellId) - 1;
+      nextId2 = Number(selectedCellId) - 2;
+    } else {
+      nextId = Number(selectedCellId) + 1;
+      nextId2 = Number(selectedCellId) + 2;
+    }
+    console.log(nextId);
+    let nextEl = document.getElementById(nextId);
+    // console.log(nextEl);
+
+    let nextEl2 = document.getElementById(nextId2);
+    console.log(nextId2);
+    if (
+      cell.style.backgroundColor != "red" &&
+      nextEl.style.backgroundColor != "red" &&
+      nextEl2.style.backgroundColor != "red"
+    ) {
+      cell.style.backgroundColor = "red";
+      nextEl.style.backgroundColor = "red";
+      nextEl2.style.backgroundColor = "red";
+      shipPlaced = true;
+    }
+
+    // cell.disabled = true;
+    // nextEl.disabled = true;
+    // nextEl2.disabled = true;
+  }
+}
+
+function computerSubmarinePlacement() {
+  let shipPlaced = false;
+  while (!shipPlaced) {
+    let selectedCellId = getRandomIntInclusive(101, 200);
+    console.log(selectedCellId);
+    let cell = document.getElementById(selectedCellId);
+    console.log(cell);
+
+    let nextId;
+    let nextId2;
+    if (selectedCellId % 10 === 0 || selectedCellId % 10 === 9) {
+      nextId = Number(selectedCellId) - 1;
+      nextId2 = Number(selectedCellId) - 2;
+    } else {
+      nextId = Number(selectedCellId) + 1;
+      nextId2 = Number(selectedCellId) + 2;
+    }
+    console.log(nextId);
+    let nextEl = document.getElementById(nextId);
+    // console.log(nextEl);
+
+    let nextEl2 = document.getElementById(nextId2);
+    console.log(nextId2);
+    if (
+      cell.style.backgroundColor != "red" &&
+      nextEl.style.backgroundColor != "red" &&
+      nextEl2.style.backgroundColor != "red"
+    ) {
+      cell.style.backgroundColor = "red";
+      nextEl.style.backgroundColor = "red";
+      nextEl2.style.backgroundColor = "red";
+      shipPlaced = true;
+    }
+
+    // cell.disabled = true;
+    // nextEl.disabled = true;
+    // nextEl2.disabled = true;
+  }
+}
+
+function computerBattleshipPlacement() {
+  let shipPlaced = false;
+  while (!shipPlaced) {
+    let selectedCellId = getRandomIntInclusive(101, 200);
+    console.log(selectedCellId);
+    let cell = document.getElementById(selectedCellId);
+    console.log(cell);
+
+    let nextId;
+    let nextId2;
+    let nextId3;
+    if (
+      selectedCellId % 10 === 0 ||
+      selectedCellId % 10 === 9 ||
+      selectedCellId % 10 == 8
+    ) {
+      nextId = Number(selectedCellId) - 1;
+      nextId2 = Number(selectedCellId) - 2;
+      nextId3 = Number(selectedCellId) - 3;
+    } else {
+      nextId = Number(selectedCellId) + 1;
+      nextId2 = Number(selectedCellId) + 2;
+      nextId3 = Number(selectedCellId) + 3;
+    }
+    console.log(nextId);
+    let nextEl = document.getElementById(nextId);
+    // console.log(nextEl);
+
+    let nextEl2 = document.getElementById(nextId2);
+    let nextEl3 = document.getElementById(nextId3);
+    console.log(nextId2);
+    if (
+      cell.style.backgroundColor != "red" &&
+      nextEl.style.backgroundColor != "red" &&
+      nextEl2.style.backgroundColor != "red" &&
+      nextEl3.style.backgroundColor != "red"
+    ) {
+      cell.style.backgroundColor = "red";
+      nextEl.style.backgroundColor = "red";
+      nextEl2.style.backgroundColor = "red";
+      nextEl3.style.backgroundColor = "red";
+      shipPlaced = true;
+    }
+
+    // cell.disabled = true;
+    // nextEl.disabled = true;
+    // nextEl2.disabled = true;
+  }
+}
+
+function computerCarrierPlacement() {
+  let shipPlaced = false;
+  while (!shipPlaced) {
+    let selectedCellId = getRandomIntInclusive(101, 200);
+    console.log(selectedCellId);
+    let cell = document.getElementById(selectedCellId);
+    console.log(cell);
+
+    let nextId;
+    let nextId2;
+    let nextId3;
+    let nextId4;
+    if (
+      selectedCellId % 10 === 0 ||
+      selectedCellId % 10 === 9 ||
+      selectedCellId % 10 == 8 ||
+      selectedCellId % 10 == 7
+    ) {
+      nextId = Number(selectedCellId) - 1;
+      nextId2 = Number(selectedCellId) - 2;
+      nextId3 = Number(selectedCellId) - 3;
+      nextId4 = Number(selectedCellId) - 4;
+    } else {
+      nextId = Number(selectedCellId) + 1;
+      nextId2 = Number(selectedCellId) + 2;
+      nextId3 = Number(selectedCellId) + 3;
+      nextId4 = Number(selectedCellId) + 4;
+    }
+    console.log(nextId);
+    let nextEl = document.getElementById(nextId);
+    // console.log(nextEl);
+
+    let nextEl2 = document.getElementById(nextId2);
+    let nextEl3 = document.getElementById(nextId3);
+    let nextEl4 = document.getElementById(nextId4);
+    console.log(nextId2);
+    if (
+      cell.style.backgroundColor != "red" &&
+      nextEl.style.backgroundColor != "red" &&
+      nextEl2.style.backgroundColor != "red" &&
+      nextEl3.style.backgroundColor != "red" &&
+      nextEl4.style.backgroundColor != "red"
+    ) {
+      cell.style.backgroundColor = "red";
+      nextEl.style.backgroundColor = "red";
+      nextEl2.style.backgroundColor = "red";
+      nextEl3.style.backgroundColor = "red";
+      nextEl4.style.backgroundColor = "red";
+      shipPlaced = true;
+    }
+
+    // cell.disabled = true;
+    // nextEl.disabled = true;
+    // nextEl2.disabled = true;
+  }
+}
+computerCarrierPlacement();
+computerSubmarinePlacement();
+computerCruiserPlacement();
+computerDestroyerPlacement();
+computerBattleshipPlacement();
 
 // playerCells.forEach((cell) => {
 //   cell.addEventListener("mouseover", (e) => {
