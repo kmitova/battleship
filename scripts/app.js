@@ -2,6 +2,9 @@ const playerGrid = document.querySelector(".player-grid");
 const computerGrid = document.querySelector(".computer-grid");
 const defaultColor = "white";
 
+// VARIABLE TO CHECK IF THE GAME HAS STARTED (IF TRUE, CLICK EVENTS WILL BE DISABLED TO NOT ADD A SHIP WHERE THERE ALREADY IS ONE)
+let gameHasStarted = false;
+
 function generatePlayerGrid() {
   playerGrid.style.setProperty("--grid-rows", 10);
   playerGrid.style.setProperty("--grid-cols", 10);
@@ -36,7 +39,7 @@ const playerCells = Array.from(document.querySelectorAll(".player-grid-item"));
 
 function destroyerPlacement() {
   playerCells.forEach((cell) => {
-    cell.addEventListener("click", () => {
+    cell.addEventListener("click", (e) => {
       let currentId = cell.id;
       console.log(cell.id);
       let nextId;
@@ -48,8 +51,19 @@ function destroyerPlacement() {
       console.log(nextId);
       let nextEl = document.getElementById(nextId);
       console.log(nextEl);
-      cell.style.backgroundColor = "red";
-      nextEl.style.backgroundColor = "red";
+      if (
+        cell.style.backgroundColor !== "red" &&
+        nextEl.style.backgroundColor !== "red"
+      ) {
+        cell.style.backgroundColor = "red";
+        nextEl.style.backgroundColor = "red";
+      }
+
+      // LATER ENABLE WITH A FOR EACH LOOP FOR EACH CELL ELEMENT
+      cell.disabled = true;
+      nextEl.disabled = true;
+      // e.preventDefault();
+      // nextEl.preventDefault();
     });
   });
 }
@@ -74,11 +88,22 @@ function cruiserPlacement() {
       console.log(nextId);
       let nextEl = document.getElementById(nextId);
       // console.log(nextEl);
-      cell.style.backgroundColor = "red";
-      nextEl.style.backgroundColor = "red";
+
       let nextEl2 = document.getElementById(nextId2);
       console.log(nextId2);
-      nextEl2.style.backgroundColor = "red";
+      if (
+        cell.style.backgroundColor != "red" &&
+        nextEl.style.backgroundColor != "red" &&
+        nextEl2.style.backgroundColor != "red"
+      ) {
+        cell.style.backgroundColor = "red";
+        nextEl.style.backgroundColor = "red";
+        nextEl2.style.backgroundColor = "red";
+      }
+
+      cell.disabled = true;
+      nextEl.disabled = true;
+      nextEl2.disabled = true;
     });
   });
 }
@@ -102,11 +127,22 @@ function submarinePlacement() {
       console.log(nextId);
       let nextEl = document.getElementById(nextId);
       // console.log(nextEl);
-      cell.style.backgroundColor = "red";
-      nextEl.style.backgroundColor = "red";
+
       let nextEl2 = document.getElementById(nextId2);
       console.log(nextId2);
-      nextEl2.style.backgroundColor = "red";
+      if (
+        cell.style.backgroundColor != "red" &&
+        nextEl.style.backgroundColor != "red" &&
+        nextEl2.style.backgroundColor != "red"
+      ) {
+        cell.style.backgroundColor = "red";
+        nextEl.style.backgroundColor = "red";
+        nextEl2.style.backgroundColor = "red";
+      }
+
+      cell.disabled = true;
+      nextEl.disabled = true;
+      nextEl2.disabled = true;
     });
   });
 }
@@ -143,10 +179,22 @@ function battleshipPlacement() {
       let nextEl2 = document.getElementById(nextId2);
       let nextEl3 = document.getElementById(nextId3);
 
-      cell.style.backgroundColor = "red";
-      nextEl.style.backgroundColor = "red";
-      nextEl2.style.backgroundColor = "red";
-      nextEl3.style.backgroundColor = "red";
+      if (
+        cell.style.backgroundColor != "red" &&
+        nextEl.style.backgroundColor != "red" &&
+        nextEl2.style.backgroundColor != "red" &&
+        nextEl3.style.backgroundColor != "red"
+      ) {
+        cell.style.backgroundColor = "red";
+        nextEl.style.backgroundColor = "red";
+        nextEl2.style.backgroundColor = "red";
+        nextEl3.style.backgroundColor = "red";
+      }
+
+      cell.disabled = true;
+      nextEl.disabled = true;
+      nextEl2.disabled = true;
+      nextEl3.disabled = true;
     });
   });
 }
@@ -195,11 +243,24 @@ function carrierPlacement() {
       let nextEl3 = document.getElementById(nextId3);
       let nextEl4 = document.getElementById(nextId4);
 
-      cell.style.backgroundColor = "red";
-      nextEl.style.backgroundColor = "red";
-      nextEl2.style.backgroundColor = "red";
-      nextEl3.style.backgroundColor = "red";
-      nextEl4.style.backgroundColor = "red";
+      if (
+        cell.style.backgroundColor != "red" &&
+        nextEl.style.backgroundColor != "red" &&
+        nextEl2.style.backgroundColor != "red" &&
+        nextEl3.style.backgroundColor != "red" &&
+        nextEl4.style.backgroundColor != "red"
+      ) {
+        cell.style.backgroundColor = "red";
+        nextEl.style.backgroundColor = "red";
+        nextEl2.style.backgroundColor = "red";
+        nextEl3.style.backgroundColor = "red";
+        nextEl4.style.backgroundColor = "red";
+      }
+      cell.disabled = true;
+      nextEl.disabled = true;
+      nextEl2.disabled = true;
+      nextEl3.disabled = true;
+      nextEl4.disabled = true;
     });
   });
 }
