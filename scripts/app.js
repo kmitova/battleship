@@ -294,7 +294,7 @@ function carrierPlacement() {
   });
 }
 
-carrierPlacement();
+// carrierPlacement();
 
 // 0. get array of computer cells
 const computerCells = Array.from(
@@ -318,10 +318,6 @@ function computerDestroyerPlacement() {
     let cell = document.getElementById(selectedCellId);
     console.log(cell);
 
-    // cell.addEventListener("click", () => {
-    // let currentId = cell.id;
-    // console.log(cell.id);
-
     let nextId;
     if (selectedCellId % 10 === 0) {
       nextId = Number(selectedCellId) - 1;
@@ -332,11 +328,13 @@ function computerDestroyerPlacement() {
     let nextEl = document.getElementById(nextId);
     console.log(nextEl);
     if (
-      cell.style.backgroundColor !== "red" &&
-      nextEl.style.backgroundColor !== "red"
+      !cell.classList.contains("filled") &&
+      !nextEl.classList.contains("filled")
     ) {
       cell.style.backgroundColor = "red";
       nextEl.style.backgroundColor = "red";
+      cell.classList.add("filled");
+      nextEl.classList.add("filled");
       shipPlaced = true;
     }
 
@@ -369,13 +367,18 @@ function computerCruiserPlacement() {
     let nextEl2 = document.getElementById(nextId2);
     console.log(nextId2);
     if (
-      cell.style.backgroundColor != "red" &&
-      nextEl.style.backgroundColor != "red" &&
-      nextEl2.style.backgroundColor != "red"
+      !cell.classList.contains("filled") &&
+      !nextEl.classList.contains("filled") &&
+      !nextEl2.classList.contains("filled")
     ) {
       cell.style.backgroundColor = "red";
       nextEl.style.backgroundColor = "red";
       nextEl2.style.backgroundColor = "red";
+
+      cell.classList.add("filled");
+      nextEl.classList.add("filled");
+      nextEl2.classList.add("filled");
+
       shipPlaced = true;
     }
 
@@ -409,13 +412,18 @@ function computerSubmarinePlacement() {
     let nextEl2 = document.getElementById(nextId2);
     console.log(nextId2);
     if (
-      cell.style.backgroundColor != "red" &&
-      nextEl.style.backgroundColor != "red" &&
-      nextEl2.style.backgroundColor != "red"
+      !cell.classList.contains("filled") &&
+      !nextEl.classList.contains("filled") &&
+      !nextEl2.classList.contains("filled")
     ) {
       cell.style.backgroundColor = "red";
       nextEl.style.backgroundColor = "red";
       nextEl2.style.backgroundColor = "red";
+
+      cell.classList.add("filled");
+      nextEl.classList.add("filled");
+      nextEl2.classList.add("filled");
+
       shipPlaced = true;
     }
 
@@ -457,15 +465,21 @@ function computerBattleshipPlacement() {
     let nextEl3 = document.getElementById(nextId3);
     console.log(nextId2);
     if (
-      cell.style.backgroundColor != "red" &&
-      nextEl.style.backgroundColor != "red" &&
-      nextEl2.style.backgroundColor != "red" &&
-      nextEl3.style.backgroundColor != "red"
+      !cell.classList.contains("filled") &&
+      !nextEl.classList.contains("filled") &&
+      !nextEl2.classList.contains("filled") &&
+      !nextEl3.classList.contains("filled")
     ) {
       cell.style.backgroundColor = "red";
       nextEl.style.backgroundColor = "red";
       nextEl2.style.backgroundColor = "red";
       nextEl3.style.backgroundColor = "red";
+
+      cell.classList.add("filled");
+      nextEl.classList.add("filled");
+      nextEl2.classList.add("filled");
+      nextEl3.classList.add("filled");
+
       shipPlaced = true;
     }
 
@@ -512,17 +526,24 @@ function computerCarrierPlacement() {
     let nextEl4 = document.getElementById(nextId4);
     console.log(nextId2);
     if (
-      cell.style.backgroundColor != "red" &&
-      nextEl.style.backgroundColor != "red" &&
-      nextEl2.style.backgroundColor != "red" &&
-      nextEl3.style.backgroundColor != "red" &&
-      nextEl4.style.backgroundColor != "red"
+      !cell.classList.contains("filled") &&
+      !nextEl.classList.contains("filled") &&
+      !nextEl2.classList.contains("filled") &&
+      !nextEl3.classList.contains("filled") &&
+      !nextEl4.classList.contains("filled")
     ) {
       cell.style.backgroundColor = "red";
       nextEl.style.backgroundColor = "red";
       nextEl2.style.backgroundColor = "red";
       nextEl3.style.backgroundColor = "red";
       nextEl4.style.backgroundColor = "red";
+
+      cell.classList.add("filled");
+      nextEl.classList.add("filled");
+      nextEl2.classList.add("filled");
+      nextEl3.classList.add("filled");
+      nextEl4.classList.add("filled");
+
       shipPlaced = true;
     }
 
