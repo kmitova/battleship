@@ -5,6 +5,21 @@ const defaultColor = "white";
 // VARIABLE TO CHECK IF THE GAME HAS STARTED (IF TRUE, CLICK EVENTS WILL BE DISABLED TO NOT ADD A SHIP WHERE THERE ALREADY IS ONE)
 let gameHasStarted = false;
 
+const playerName = document.getElementById("name").value;
+const startBtn = document.getElementById("name-btn");
+
+function playGame() {
+  // if player name and start game button is clicked:
+  // -- start game
+  // -- gamehasstarted = true
+  // if gamehasstarted:
+  // -- display player board
+  // -- queue the ship placing functions and add classes to the clicked fields
+  // -- player puts their ships
+  // -- while NOT displaying the filled cells, show the computer board and randomly fill the ships on it
+  // then: while alternating turns (player starts) player should click on a cell on the computer board and the computer should click on a cell on the player board. will have two variables: playerShips and computerShips (equal to 17). each time there is a hit, 1 will be subtracted. whoever hits all of the opponents cells and zeroes their ships, wins.
+}
+
 function generatePlayerGrid() {
   playerGrid.style.setProperty("--grid-rows", 10);
   playerGrid.style.setProperty("--grid-cols", 10);
@@ -52,11 +67,13 @@ function destroyerPlacement() {
       let nextEl = document.getElementById(nextId);
       console.log(nextEl);
       if (
-        cell.style.backgroundColor !== "red" &&
-        nextEl.style.backgroundColor !== "red"
+        !cell.classList.contains("filled") &&
+        !nextEl.classList.contains("filled")
       ) {
         cell.style.backgroundColor = "red";
         nextEl.style.backgroundColor = "red";
+        cell.classList.add("filled");
+        nextEl.classList.add("filled");
       }
 
       // LATER ENABLE WITH A FOR EACH LOOP FOR EACH CELL ELEMENT
@@ -67,8 +84,6 @@ function destroyerPlacement() {
     });
   });
 }
-
-// destroyerPlacement();
 
 // CRUISER 3 FIELDS
 function cruiserPlacement() {
@@ -92,13 +107,16 @@ function cruiserPlacement() {
       let nextEl2 = document.getElementById(nextId2);
       console.log(nextId2);
       if (
-        cell.style.backgroundColor != "red" &&
-        nextEl.style.backgroundColor != "red" &&
-        nextEl2.style.backgroundColor != "red"
+        !cell.classList.contains("filled") &&
+        !nextEl.classList.contains("filled") &&
+        !nextEl2.classList.contains("filled")
       ) {
         cell.style.backgroundColor = "red";
         nextEl.style.backgroundColor = "red";
         nextEl2.style.backgroundColor = "red";
+        cell.classList.add("filled");
+        nextEl.classList.add("filled");
+        nextEl2.classList.add("filled");
       }
 
       cell.disabled = true;
@@ -107,7 +125,6 @@ function cruiserPlacement() {
     });
   });
 }
-// cruiserPlacement();
 
 // SUBMARINE 3 FIELDS
 function submarinePlacement() {
@@ -131,13 +148,16 @@ function submarinePlacement() {
       let nextEl2 = document.getElementById(nextId2);
       console.log(nextId2);
       if (
-        cell.style.backgroundColor != "red" &&
-        nextEl.style.backgroundColor != "red" &&
-        nextEl2.style.backgroundColor != "red"
+        !cell.classList.contains("filled") &&
+        !nextEl.classList.contains("filled") &&
+        !nextEl2.classList.contains("filled")
       ) {
         cell.style.backgroundColor = "red";
         nextEl.style.backgroundColor = "red";
         nextEl2.style.backgroundColor = "red";
+        cell.classList.add("filled");
+        nextEl.classList.add("filled");
+        nextEl2.classList.add("filled");
       }
 
       cell.disabled = true;
@@ -180,15 +200,20 @@ function battleshipPlacement() {
       let nextEl3 = document.getElementById(nextId3);
 
       if (
-        cell.style.backgroundColor != "red" &&
-        nextEl.style.backgroundColor != "red" &&
-        nextEl2.style.backgroundColor != "red" &&
-        nextEl3.style.backgroundColor != "red"
+        !cell.classList.contains("filled") &&
+        !nextEl.classList.contains("filled") &&
+        !nextEl2.classList.contains("filled") &&
+        !nextEl3.classList.contains("filled")
       ) {
         cell.style.backgroundColor = "red";
         nextEl.style.backgroundColor = "red";
         nextEl2.style.backgroundColor = "red";
         nextEl3.style.backgroundColor = "red";
+
+        cell.classList.add("filled");
+        nextEl.classList.add("filled");
+        nextEl2.classList.add("filled");
+        nextEl3.classList.add("filled");
       }
 
       cell.disabled = true;
@@ -198,8 +223,6 @@ function battleshipPlacement() {
     });
   });
 }
-
-// battleshipPlacement();
 
 // CARRIER  FIELDS 5
 function carrierPlacement() {
@@ -244,17 +267,23 @@ function carrierPlacement() {
       let nextEl4 = document.getElementById(nextId4);
 
       if (
-        cell.style.backgroundColor != "red" &&
-        nextEl.style.backgroundColor != "red" &&
-        nextEl2.style.backgroundColor != "red" &&
-        nextEl3.style.backgroundColor != "red" &&
-        nextEl4.style.backgroundColor != "red"
+        !cell.classList.contains("filled") &&
+        !nextEl.classList.contains("filled") &&
+        !nextEl2.classList.contains("filled") &&
+        !nextEl3.classList.contains("filled") &&
+        !nextEl4.classList.contains("filled")
       ) {
         cell.style.backgroundColor = "red";
         nextEl.style.backgroundColor = "red";
         nextEl2.style.backgroundColor = "red";
         nextEl3.style.backgroundColor = "red";
         nextEl4.style.backgroundColor = "red";
+
+        cell.classList.add("filled");
+        nextEl.classList.add("filled");
+        nextEl2.classList.add("filled");
+        nextEl3.classList.add("filled");
+        nextEl4.classList.add("filled");
       }
       cell.disabled = true;
       nextEl.disabled = true;
@@ -265,7 +294,7 @@ function carrierPlacement() {
   });
 }
 
-// carrierPlacement();
+carrierPlacement();
 
 // 0. get array of computer cells
 const computerCells = Array.from(
