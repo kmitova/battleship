@@ -20,6 +20,18 @@
   max-width: 1fr;
 }
 
+/* .player-grid {
+    display: none;
+}
+
+.computer-grid {
+  display: none;
+} */
+
+.player-grid-container, .computer-grid-container {
+  display: none;
+}
+
 .computer-grid-item {
   border: 1px solid #dddd;
   text-align: center;

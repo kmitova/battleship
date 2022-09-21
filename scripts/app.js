@@ -1,17 +1,48 @@
 const playerGrid = document.querySelector(".player-grid");
 const computerGrid = document.querySelector(".computer-grid");
 const defaultColor = "white";
+let destroyerPlaced = false;
+let cruiserPlaced = false;
+let submarinePlaced = false;
+let battleshipPlaced = false;
+let carrierPlaced = false;
 
 // VARIABLE TO CHECK IF THE GAME HAS STARTED (IF TRUE, CLICK EVENTS WILL BE DISABLED TO NOT ADD A SHIP WHERE THERE ALREADY IS ONE)
 let gameHasStarted = false;
 
-const playerName = document.getElementById("name").value;
+const playerName = document.getElementById("name");
+
 const startBtn = document.getElementById("name-btn");
+let btnClicked = false;
+startBtn.addEventListener("click", () => {
+  btnClicked = true;
+  gameHasStarted = true;
+  playGame();
+});
+
+function generateGrids() {
+  // for player grid: id from 1 to 100
+  generatePlayerGrid();
+  // for computer grid: id from 101 to 200
+  generateComputerGrid();
+}
 
 function playGame() {
   // if player name and start game button is clicked:
   // -- start game
   // -- gamehasstarted = true
+  if (gameHasStarted) {
+    console.log(playerName.value);
+    generateGrids();
+    const playerCells = Array.from(
+      document.querySelectorAll(".player-grid-item")
+    );
+    console.log(playerGrid.classList);
+    // playerGrid.style.display = "block";
+    document.querySelector(".player-grid-container").style.display = "block";
+    destroyerPlacement();
+  }
+
   // if gamehasstarted:
   // -- display player board
   // -- queue the ship placing functions and add classes to the clicked fields
@@ -23,6 +54,7 @@ function playGame() {
 function generatePlayerGrid() {
   playerGrid.style.setProperty("--grid-rows", 10);
   playerGrid.style.setProperty("--grid-cols", 10);
+  // playerGrid.classList.add("player-grid");
   let i = 1;
   for (let cell = 0; cell < 10 * 10; cell++) {
     let cell = document.createElement("div");
@@ -35,6 +67,7 @@ function generatePlayerGrid() {
 function generateComputerGrid() {
   computerGrid.style.setProperty("--grid-rows", 10);
   computerGrid.style.setProperty("--grid-cols", 10);
+  // computerGrid.classList.add("computer-grid");
   let i = 101;
   for (let cell = 0; cell < 10 * 10; cell++) {
     let cell = document.createElement("div");
@@ -43,16 +76,19 @@ function generateComputerGrid() {
     i++;
   }
 }
-// for player grid: id from 1 to 100
-generatePlayerGrid();
-// for computer grid: id from 101 to 200
-generateComputerGrid();
+// // for player grid: id from 1 to 100
+// generatePlayerGrid();
+// // for computer grid: id from 101 to 200
+// generateComputerGrid();
 
-const playerCells = Array.from(document.querySelectorAll(".player-grid-item"));
+// const playerCells = Array.from(document.querySelectorAll(".player-grid-item"));
 
 // DESTROYER 2 FIELDS
 
 function destroyerPlacement() {
+  const playerCells = Array.from(
+    document.querySelectorAll(".player-grid-item")
+  );
   playerCells.forEach((cell) => {
     cell.addEventListener("click", (e) => {
       let currentId = cell.id;
@@ -74,6 +110,7 @@ function destroyerPlacement() {
         nextEl.style.backgroundColor = "red";
         cell.classList.add("filled");
         nextEl.classList.add("filled");
+        destroyerPlaced = true;
       }
 
       // LATER ENABLE WITH A FOR EACH LOOP FOR EACH CELL ELEMENT
@@ -87,6 +124,9 @@ function destroyerPlacement() {
 
 // CRUISER 3 FIELDS
 function cruiserPlacement() {
+  const playerCells = Array.from(
+    document.querySelectorAll(".player-grid-item")
+  );
   playerCells.forEach((cell) => {
     cell.addEventListener("click", () => {
       let currentId = cell.id;
@@ -117,6 +157,7 @@ function cruiserPlacement() {
         cell.classList.add("filled");
         nextEl.classList.add("filled");
         nextEl2.classList.add("filled");
+        cruiserPlaced = true;
       }
 
       cell.disabled = true;
@@ -128,6 +169,9 @@ function cruiserPlacement() {
 
 // SUBMARINE 3 FIELDS
 function submarinePlacement() {
+  const playerCells = Array.from(
+    document.querySelectorAll(".player-grid-item")
+  );
   playerCells.forEach((cell) => {
     cell.addEventListener("click", () => {
       let currentId = cell.id;
@@ -158,6 +202,7 @@ function submarinePlacement() {
         cell.classList.add("filled");
         nextEl.classList.add("filled");
         nextEl2.classList.add("filled");
+        submarinePlaced = true;
       }
 
       cell.disabled = true;
@@ -170,6 +215,9 @@ function submarinePlacement() {
 
 // BATTLESHIP 4 FIELDS
 function battleshipPlacement() {
+  const playerCells = Array.from(
+    document.querySelectorAll(".player-grid-item")
+  );
   playerCells.forEach((cell) => {
     cell.addEventListener("click", () => {
       let currentId = cell.id;
@@ -214,6 +262,7 @@ function battleshipPlacement() {
         nextEl.classList.add("filled");
         nextEl2.classList.add("filled");
         nextEl3.classList.add("filled");
+        battleshipPlaced = true;
       }
 
       cell.disabled = true;
@@ -226,6 +275,9 @@ function battleshipPlacement() {
 
 // CARRIER  FIELDS 5
 function carrierPlacement() {
+  const playerCells = Array.from(
+    document.querySelectorAll(".player-grid-item")
+  );
   playerCells.forEach((cell) => {
     cell.addEventListener("click", () => {
       let currentId = cell.id;
@@ -284,6 +336,7 @@ function carrierPlacement() {
         nextEl2.classList.add("filled");
         nextEl3.classList.add("filled");
         nextEl4.classList.add("filled");
+        carrierPlaced = true;
       }
       cell.disabled = true;
       nextEl.disabled = true;
@@ -297,10 +350,10 @@ function carrierPlacement() {
 // carrierPlacement();
 
 // 0. get array of computer cells
-const computerCells = Array.from(
-  document.querySelectorAll(".computer-grid-item")
-);
-console.log(computerCells);
+// const computerCells = Array.from(
+//   document.querySelectorAll(".computer-grid-item")
+// );
+// console.log(computerCells);
 
 // 1. get random number for cell for computer and change class name of clicked cell and (for now) add color which will be removed for the game
 
@@ -552,11 +605,11 @@ function computerCarrierPlacement() {
     // nextEl2.disabled = true;
   }
 }
-computerCarrierPlacement();
-computerSubmarinePlacement();
-computerCruiserPlacement();
-computerDestroyerPlacement();
-computerBattleshipPlacement();
+// computerCarrierPlacement();
+// computerSubmarinePlacement();
+// computerCruiserPlacement();
+// computerDestroyerPlacement();
+// computerBattleshipPlacement();
 
 // playerCells.forEach((cell) => {
 //   cell.addEventListener("mouseover", (e) => {
