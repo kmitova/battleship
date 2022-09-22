@@ -27,6 +27,10 @@ function generateGrids() {
   generateComputerGrid();
 }
 
+function placeShips() {
+  destroyerPlacement();
+}
+
 function playGame() {
   // if player name and start game button is clicked:
   // -- start game
@@ -40,16 +44,19 @@ function playGame() {
     console.log(playerGrid.classList);
     // playerGrid.style.display = "block";
     document.querySelector(".player-grid-container").style.display = "block";
-    destroyerPlacement();
+    placeShips();
+    // computerShipsPlacement();
+    // document.querySelector(".computer-grid-container").style.display = "block";
   }
-
-  // if gamehasstarted:
-  // -- display player board
-  // -- queue the ship placing functions and add classes to the clicked fields
-  // -- player puts their ships
-  // -- while NOT displaying the filled cells, show the computer board and randomly fill the ships on it
-  // then: while alternating turns (player starts) player should click on a cell on the computer board and the computer should click on a cell on the player board. will have two variables: playerShips and computerShips (equal to 17). each time there is a hit, 1 will be subtracted. whoever hits all of the opponents cells and zeroes their ships, wins.
+  // - fill computer board fields and show board
 }
+
+// if gamehasstarted:
+// -- display player board
+// -- queue the ship placing functions and add classes to the clicked fields
+// -- player puts their ships
+// -- while NOT displaying the filled cells, show the computer board and randomly fill the ships on it
+// then: while alternating turns (player starts) player should click on a cell on the computer board and the computer should click on a cell on the player board. will have two variables: playerShips and computerShips (equal to 17). each time there is a hit, 1 will be subtracted. whoever hits all of the opponents cells and zeroes their ships, wins.
 
 function generatePlayerGrid() {
   playerGrid.style.setProperty("--grid-rows", 10);
@@ -104,13 +111,15 @@ function destroyerPlacement() {
       console.log(nextEl);
       if (
         !cell.classList.contains("filled") &&
-        !nextEl.classList.contains("filled")
+        !nextEl.classList.contains("filled") &&
+        !destroyerPlaced
       ) {
         cell.style.backgroundColor = "red";
         nextEl.style.backgroundColor = "red";
         cell.classList.add("filled");
         nextEl.classList.add("filled");
         destroyerPlaced = true;
+        cruiserPlacement();
       }
 
       // LATER ENABLE WITH A FOR EACH LOOP FOR EACH CELL ELEMENT
@@ -149,7 +158,8 @@ function cruiserPlacement() {
       if (
         !cell.classList.contains("filled") &&
         !nextEl.classList.contains("filled") &&
-        !nextEl2.classList.contains("filled")
+        !nextEl2.classList.contains("filled") &&
+        !cruiserPlaced
       ) {
         cell.style.backgroundColor = "red";
         nextEl.style.backgroundColor = "red";
@@ -158,6 +168,7 @@ function cruiserPlacement() {
         nextEl.classList.add("filled");
         nextEl2.classList.add("filled");
         cruiserPlaced = true;
+        submarinePlacement();
       }
 
       cell.disabled = true;
@@ -194,7 +205,8 @@ function submarinePlacement() {
       if (
         !cell.classList.contains("filled") &&
         !nextEl.classList.contains("filled") &&
-        !nextEl2.classList.contains("filled")
+        !nextEl2.classList.contains("filled") &&
+        !submarinePlaced
       ) {
         cell.style.backgroundColor = "red";
         nextEl.style.backgroundColor = "red";
@@ -203,6 +215,7 @@ function submarinePlacement() {
         nextEl.classList.add("filled");
         nextEl2.classList.add("filled");
         submarinePlaced = true;
+        battleshipPlacement();
       }
 
       cell.disabled = true;
@@ -251,7 +264,8 @@ function battleshipPlacement() {
         !cell.classList.contains("filled") &&
         !nextEl.classList.contains("filled") &&
         !nextEl2.classList.contains("filled") &&
-        !nextEl3.classList.contains("filled")
+        !nextEl3.classList.contains("filled") &&
+        !battleshipPlaced
       ) {
         cell.style.backgroundColor = "red";
         nextEl.style.backgroundColor = "red";
@@ -263,6 +277,7 @@ function battleshipPlacement() {
         nextEl2.classList.add("filled");
         nextEl3.classList.add("filled");
         battleshipPlaced = true;
+        carrierPlacement();
       }
 
       cell.disabled = true;
@@ -323,7 +338,8 @@ function carrierPlacement() {
         !nextEl.classList.contains("filled") &&
         !nextEl2.classList.contains("filled") &&
         !nextEl3.classList.contains("filled") &&
-        !nextEl4.classList.contains("filled")
+        !nextEl4.classList.contains("filled") &&
+        !carrierPlaced
       ) {
         cell.style.backgroundColor = "red";
         nextEl.style.backgroundColor = "red";
@@ -337,6 +353,7 @@ function carrierPlacement() {
         nextEl3.classList.add("filled");
         nextEl4.classList.add("filled");
         carrierPlaced = true;
+        computerShipsPlacement();
       }
       cell.disabled = true;
       nextEl.disabled = true;
@@ -350,9 +367,21 @@ function carrierPlacement() {
 // carrierPlacement();
 
 // 0. get array of computer cells
-// const computerCells = Array.from(
-//   document.querySelectorAll(".computer-grid-item")
-// );
+const computerCells = Array.from(
+  document.querySelectorAll(".computer-grid-item")
+);
+
+function computerShipsPlacement() {
+  const computerCells = Array.from(
+    document.querySelectorAll(".computer-grid-item")
+  );
+  // document.querySelector(".computer-grid-container").style.display = "block";
+  computerDestroyerPlacement();
+  // computerCruiserPlacement();
+  // computerSubmarinePlacement();
+  // computerBattleshipPlacement();
+  // computerCarrierPlacement();
+}
 // console.log(computerCells);
 
 // 1. get random number for cell for computer and change class name of clicked cell and (for now) add color which will be removed for the game
@@ -389,6 +418,7 @@ function computerDestroyerPlacement() {
       cell.classList.add("filled");
       nextEl.classList.add("filled");
       shipPlaced = true;
+      computerCruiserPlacement();
     }
 
     // LATER ENABLE WITH A FOR EACH LOOP FOR EACH CELL ELEMENT
@@ -433,6 +463,7 @@ function computerCruiserPlacement() {
       nextEl2.classList.add("filled");
 
       shipPlaced = true;
+      computerSubmarinePlacement();
     }
 
     // cell.disabled = true;
@@ -478,6 +509,7 @@ function computerSubmarinePlacement() {
       nextEl2.classList.add("filled");
 
       shipPlaced = true;
+      computerBattleshipPlacement();
     }
 
     // cell.disabled = true;
@@ -532,6 +564,7 @@ function computerBattleshipPlacement() {
       nextEl.classList.add("filled");
       nextEl2.classList.add("filled");
       nextEl3.classList.add("filled");
+      computerCarrierPlacement();
 
       shipPlaced = true;
     }
@@ -598,6 +631,8 @@ function computerCarrierPlacement() {
       nextEl4.classList.add("filled");
 
       shipPlaced = true;
+      document.querySelector(".computer-grid-container").style.display =
+        "block";
     }
 
     // cell.disabled = true;
