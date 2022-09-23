@@ -550,4 +550,4 @@ function computerCarrierPlacement() {
   }
 }
 
-export { placeShips };
+export { placeShips, getRandomIntInclusive };

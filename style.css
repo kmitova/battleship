@@ -41,3 +41,11 @@
 h1:hover {
   color: red;
 }
+
+.hit {
+  background-color: blue;
+}
+
+.missed {
+  background-color: yellow;
+}

@@ -1,5 +1,5 @@
 import { generateGrids } from "./grids.js";
-import { placeShips } from "./playerShips.js";
+import { placeShips, getRandomIntInclusive } from "./playerShips.js";
 
 const playerGrid = document.querySelector(".player-grid");
 const computerGrid = document.querySelector(".computer-grid");
@@ -9,8 +9,11 @@ let cruiserPlaced = false;
 let submarinePlaced = false;
 let battleshipPlaced = false;
 let carrierPlaced = false;
+let shipsPlaced = false;
 
-// VARIABLE TO CHECK IF THE GAME HAS STARTED (IF TRUE, CLICK EVENTS WILL BE DISABLED TO NOT ADD A SHIP WHERE THERE ALREADY IS ONE)
+let playerShips = 17;
+let computerShips = 17;
+
 let gameHasStarted = false;
 
 const playerName = document.getElementById("name");
@@ -21,16 +24,13 @@ startBtn.addEventListener("click", () => {
   btnClicked = true;
   gameHasStarted = true;
   playGame();
+  if (shipsPlaced) {
+    console.log("ships were placed");
+  }
+  // attack();
 });
 
-// function placeShips() {
-//   destroyerPlacement();
-// }
-
 function playGame() {
-  // if player name and start game button is clicked:
-  // -- start game
-  // -- gamehasstarted = true
   if (gameHasStarted) {
     console.log(playerName.value);
     generateGrids();
@@ -44,7 +44,82 @@ function playGame() {
     // computerShipsPlacement();
     // document.querySelector(".computer-grid-container").style.display = "block";
   }
-  // - fill computer board fields and show board
+}
+
+function attack() {
+  // const computerCells = Array.from(
+  //   document.querySelectorAll(".computer-grid-item")
+  // );
+  const playerCells = Array.from(
+    document.querySelectorAll(".player-grid-item")
+  );
+  let gameOver = false;
+  let computerWins = false;
+  let playerWins = false;
+  let playerTurn = true;
+  let computerTurn = false;
+
+  while (!gameOver) {
+    if (playerShips <= 0) {
+      gameOver = true;
+      computerWins = true;
+    }
+    if (computerShips <= 0) {
+      gameOver = true;
+      playerWins = true;
+    }
+    if (playerTurn) {
+      //   computerCells.forEach((cell) => {
+      //   cell.addEventListener("click", () => {
+      //     if (cell.classList.contains("filled")) {
+      //       computerShips--
+      //       cell.classList.remove("filled")
+      //       cell.classList.add("hit")
+      //     } else {
+      //       cell.classList.add("missed")
+      //     }
+      //   })
+      // })
+      playerAttack();
+      playerTurn = false;
+      computerTurn = true;
+      // } else if (computerTurn) {
+      //   computerAttack();
+      //   playerTurn = true;
+      //   computerTurn = false;
+      // }
+    }
+  }
+}
+
+function playerAttack() {
+  const computerCells = Array.from(
+    document.querySelectorAll(".computer-grid-item")
+  );
+  computerCells.forEach((cell) => {
+    cell.addEventListener("click", () => {
+      if (cell.classList.contains("filled")) {
+        computerShips--;
+        cell.classList.remove("filled");
+        cell.classList.add("hit");
+      } else {
+        cell.classList.add("missed");
+      }
+    });
+  });
+}
+
+function computerAttack() {
+  const cellId = getRandomIntInclusive(1, 100);
+  console.log("cell id" + cellId);
+  const cell = document.getElementById(Number(cellId));
+  if (cell.classList.contains("filled")) {
+    playerShips--;
+    cell.classList.remove("filled");
+    cell.classList.add("hit");
+  } else {
+    cell.classList.add("missed");
+  }
 }
 
 // if gamehasstarted:
@@ -626,4 +701,4 @@ function playGame() {
 //   //   cell.style.backgroundColor = "white";
 //   //   console.log("out of cell");
 //   // });
-// });
+// })
