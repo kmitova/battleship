@@ -16,23 +16,23 @@ function destroyerPlacement() {
   playerCells.forEach((cell) => {
     cell.addEventListener("click", (e) => {
       let currentId = cell.id;
-      console.log(cell.id);
+      // console.log(cell.id);
       let nextId;
       if (currentId % 10 === 0) {
         nextId = Number(currentId) - 1;
       } else {
         nextId = Number(currentId) + 1;
       }
-      console.log(nextId);
+      // console.log(nextId);
       let nextEl = document.getElementById(nextId);
-      console.log(nextEl);
+      // console.log(nextEl);
       if (
         !cell.classList.contains("filled") &&
         !nextEl.classList.contains("filled") &&
         !destroyerPlaced
       ) {
-        cell.style.backgroundColor = "red";
-        nextEl.style.backgroundColor = "red";
+        // cell.style.backgroundColor = "red";
+        // nextEl.style.backgroundColor = "red";
         cell.classList.add("filled");
         nextEl.classList.add("filled");
         destroyerPlaced = true;
@@ -56,7 +56,7 @@ function cruiserPlacement() {
   playerCells.forEach((cell) => {
     cell.addEventListener("click", () => {
       let currentId = cell.id;
-      console.log(cell.id);
+      // console.log(cell.id);
       let nextId;
       let nextId2;
       if (currentId % 10 === 0 || currentId % 10 === 9) {
@@ -66,21 +66,21 @@ function cruiserPlacement() {
         nextId = Number(currentId) + 1;
         nextId2 = Number(currentId) + 2;
       }
-      console.log(nextId);
+      // console.log(nextId);
       let nextEl = document.getElementById(nextId);
       // console.log(nextEl);
 
       let nextEl2 = document.getElementById(nextId2);
-      console.log(nextId2);
+      // console.log(nextId2);
       if (
         !cell.classList.contains("filled") &&
         !nextEl.classList.contains("filled") &&
         !nextEl2.classList.contains("filled") &&
         !cruiserPlaced
       ) {
-        cell.style.backgroundColor = "red";
-        nextEl.style.backgroundColor = "red";
-        nextEl2.style.backgroundColor = "red";
+        // cell.style.backgroundColor = "red";
+        // nextEl.style.backgroundColor = "red";
+        // nextEl2.style.backgroundColor = "red";
         cell.classList.add("filled");
         nextEl.classList.add("filled");
         nextEl2.classList.add("filled");
@@ -103,7 +103,7 @@ function submarinePlacement() {
   playerCells.forEach((cell) => {
     cell.addEventListener("click", () => {
       let currentId = cell.id;
-      console.log(cell.id);
+      // console.log(cell.id);
       let nextId;
       let nextId2;
       if (currentId % 10 === 0 || currentId % 10 === 9) {
@@ -113,21 +113,21 @@ function submarinePlacement() {
         nextId = Number(currentId) + 1;
         nextId2 = Number(currentId) + 2;
       }
-      console.log(nextId);
+      // console.log(nextId);
       let nextEl = document.getElementById(nextId);
       // console.log(nextEl);
 
       let nextEl2 = document.getElementById(nextId2);
-      console.log(nextId2);
+      // console.log(nextId2);
       if (
         !cell.classList.contains("filled") &&
         !nextEl.classList.contains("filled") &&
         !nextEl2.classList.contains("filled") &&
         !submarinePlaced
       ) {
-        cell.style.backgroundColor = "red";
-        nextEl.style.backgroundColor = "red";
-        nextEl2.style.backgroundColor = "red";
+        // cell.style.backgroundColor = "red";
+        // nextEl.style.backgroundColor = "red";
+        // nextEl2.style.backgroundColor = "red";
         cell.classList.add("filled");
         nextEl.classList.add("filled");
         nextEl2.classList.add("filled");
@@ -151,7 +151,7 @@ function battleshipPlacement() {
   playerCells.forEach((cell) => {
     cell.addEventListener("click", () => {
       let currentId = cell.id;
-      console.log("current: " + cell.id);
+      // console.log("current: " + cell.id);
       let nextId;
       let nextId2;
       let nextId3;
@@ -172,7 +172,7 @@ function battleshipPlacement() {
         nextId2 = Number(currentId) + 2;
         nextId3 = Number(currentId) + 3;
       }
-      console.log(currentId, nextId, nextId2, nextId3);
+      // console.log(currentId, nextId, nextId2, nextId3);
       let nextEl = document.getElementById(nextId);
       let nextEl2 = document.getElementById(nextId2);
       let nextEl3 = document.getElementById(nextId3);
@@ -184,10 +184,10 @@ function battleshipPlacement() {
         !nextEl3.classList.contains("filled") &&
         !battleshipPlaced
       ) {
-        cell.style.backgroundColor = "red";
-        nextEl.style.backgroundColor = "red";
-        nextEl2.style.backgroundColor = "red";
-        nextEl3.style.backgroundColor = "red";
+        // cell.style.backgroundColor = "red";
+        // nextEl.style.backgroundColor = "red";
+        // nextEl2.style.backgroundColor = "red";
+        // nextEl3.style.backgroundColor = "red";
 
         cell.classList.add("filled");
         nextEl.classList.add("filled");
@@ -213,7 +213,7 @@ function carrierPlacement() {
   playerCells.forEach((cell) => {
     cell.addEventListener("click", () => {
       let currentId = cell.id;
-      console.log("current: " + cell.id);
+      // console.log("current: " + cell.id);
       let nextId;
       let nextId2;
       let nextId3;
@@ -244,7 +244,7 @@ function carrierPlacement() {
         nextId3 = Number(currentId) + 3;
         nextId4 = Number(currentId) + 4;
       }
-      console.log(currentId, nextId, nextId2, nextId3, nextId4);
+      // console.log(currentId, nextId, nextId2, nextId3, nextId4);
       let nextEl = document.getElementById(nextId);
       let nextEl2 = document.getElementById(nextId2);
       let nextEl3 = document.getElementById(nextId3);
@@ -258,11 +258,11 @@ function carrierPlacement() {
         !nextEl4.classList.contains("filled") &&
         !carrierPlaced
       ) {
-        cell.style.backgroundColor = "red";
-        nextEl.style.backgroundColor = "red";
-        nextEl2.style.backgroundColor = "red";
-        nextEl3.style.backgroundColor = "red";
-        nextEl4.style.backgroundColor = "red";
+        // cell.style.backgroundColor = "red";
+        // nextEl.style.backgroundColor = "red";
+        // nextEl2.style.backgroundColor = "red";
+        // nextEl3.style.backgroundColor = "red";
+        // nextEl4.style.backgroundColor = "red";
 
         cell.classList.add("filled");
         nextEl.classList.add("filled");
@@ -305,9 +305,9 @@ function computerDestroyerPlacement() {
   let shipPlaced = false;
   while (!shipPlaced) {
     let selectedCellId = getRandomIntInclusive(101, 200);
-    console.log(selectedCellId);
+    // console.log(selectedCellId);
     let cell = document.getElementById(selectedCellId);
-    console.log(cell);
+    // console.log(cell);
 
     let nextId;
     if (selectedCellId % 10 === 0) {
@@ -315,9 +315,9 @@ function computerDestroyerPlacement() {
     } else {
       nextId = Number(selectedCellId) + 1;
     }
-    console.log(nextId);
+    // console.log(nextId);
     let nextEl = document.getElementById(nextId);
-    console.log(nextEl);
+    // console.log(nextEl);
     if (
       !cell.classList.contains("filled") &&
       !nextEl.classList.contains("filled")
@@ -339,9 +339,9 @@ function computerCruiserPlacement() {
   let shipPlaced = false;
   while (!shipPlaced) {
     let selectedCellId = getRandomIntInclusive(101, 200);
-    console.log(selectedCellId);
+    // console.log(selectedCellId);
     let cell = document.getElementById(selectedCellId);
-    console.log(cell);
+    // console.log(cell);
 
     let nextId;
     let nextId2;
@@ -352,12 +352,12 @@ function computerCruiserPlacement() {
       nextId = Number(selectedCellId) + 1;
       nextId2 = Number(selectedCellId) + 2;
     }
-    console.log(nextId);
+    // console.log(nextId);
     let nextEl = document.getElementById(nextId);
     // console.log(nextEl);
 
     let nextEl2 = document.getElementById(nextId2);
-    console.log(nextId2);
+    // console.log(nextId2);
     if (
       !cell.classList.contains("filled") &&
       !nextEl.classList.contains("filled") &&
@@ -385,9 +385,9 @@ function computerSubmarinePlacement() {
   let shipPlaced = false;
   while (!shipPlaced) {
     let selectedCellId = getRandomIntInclusive(101, 200);
-    console.log(selectedCellId);
+    // console.log(selectedCellId);
     let cell = document.getElementById(selectedCellId);
-    console.log(cell);
+    // console.log(cell);
 
     let nextId;
     let nextId2;
@@ -398,12 +398,12 @@ function computerSubmarinePlacement() {
       nextId = Number(selectedCellId) + 1;
       nextId2 = Number(selectedCellId) + 2;
     }
-    console.log(nextId);
+    // console.log(nextId);
     let nextEl = document.getElementById(nextId);
     // console.log(nextEl);
 
     let nextEl2 = document.getElementById(nextId2);
-    console.log(nextId2);
+    // console.log(nextId2);
     if (
       !cell.classList.contains("filled") &&
       !nextEl.classList.contains("filled") &&
@@ -431,9 +431,9 @@ function computerBattleshipPlacement() {
   let shipPlaced = false;
   while (!shipPlaced) {
     let selectedCellId = getRandomIntInclusive(101, 200);
-    console.log(selectedCellId);
+    // console.log(selectedCellId);
     let cell = document.getElementById(selectedCellId);
-    console.log(cell);
+    // console.log(cell);
 
     let nextId;
     let nextId2;
@@ -451,13 +451,13 @@ function computerBattleshipPlacement() {
       nextId2 = Number(selectedCellId) + 2;
       nextId3 = Number(selectedCellId) + 3;
     }
-    console.log(nextId);
+    // console.log(nextId);
     let nextEl = document.getElementById(nextId);
     // console.log(nextEl);
 
     let nextEl2 = document.getElementById(nextId2);
     let nextEl3 = document.getElementById(nextId3);
-    console.log(nextId2);
+    // console.log(nextId2);
     if (
       !cell.classList.contains("filled") &&
       !nextEl.classList.contains("filled") &&
@@ -488,9 +488,9 @@ function computerCarrierPlacement() {
   let shipPlaced = false;
   while (!shipPlaced) {
     let selectedCellId = getRandomIntInclusive(101, 200);
-    console.log(selectedCellId);
+    // console.log(selectedCellId);
     let cell = document.getElementById(selectedCellId);
-    console.log(cell);
+    // console.log(cell);
 
     let nextId;
     let nextId2;
@@ -512,14 +512,14 @@ function computerCarrierPlacement() {
       nextId3 = Number(selectedCellId) + 3;
       nextId4 = Number(selectedCellId) + 4;
     }
-    console.log(nextId);
+    // console.log(nextId);
     let nextEl = document.getElementById(nextId);
     // console.log(nextEl);
 
     let nextEl2 = document.getElementById(nextId2);
     let nextEl3 = document.getElementById(nextId3);
     let nextEl4 = document.getElementById(nextId4);
-    console.log(nextId2);
+    // console.log(nextId2);
     if (
       !cell.classList.contains("filled") &&
       !nextEl.classList.contains("filled") &&

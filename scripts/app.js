@@ -10,7 +10,11 @@ let submarinePlaced = false;
 let battleshipPlaced = false;
 let carrierPlaced = false;
 let shipsPlaced = false;
-
+let gameOver = false;
+let computerWins = false;
+let playerWins = false;
+let playerTurn = true;
+let computerTurn = false;
 let playerShips = 17;
 let computerShips = 17;
 
@@ -24,10 +28,44 @@ startBtn.addEventListener("click", () => {
   btnClicked = true;
   gameHasStarted = true;
   playGame();
-  if (shipsPlaced) {
-    console.log("ships were placed");
-  }
-  // attack();
+  const computerCells = Array.from(
+    document.querySelectorAll(".computer-grid-item")
+  );
+  computerCells.forEach((cell) => {
+    cell.addEventListener("click", () => {
+      if (!gameOver) {
+        console.log(playerShips);
+        console.log(computerShips);
+        if (playerShips <= 0) {
+          gameOver = true;
+          computerWins = true;
+        }
+        if (computerShips <= 0) {
+          gameOver = true;
+          playerWins = true;
+        }
+        if (playerTurn) {
+          playerAttack(cell);
+          playerTurn = false;
+          computerTurn = true;
+        }
+        if (computerTurn) {
+          let hasAttacked = false;
+          computerAttack();
+          playerTurn = true;
+          computerTurn = false;
+        }
+      }
+      if (gameOver) {
+        console.log("game over");
+        if (computerWins) {
+          console.log("computer wins");
+        } else if (playerWins) {
+          console.log("player wins");
+        }
+      }
+    });
+  });
 });
 
 function playGame() {
@@ -37,79 +75,90 @@ function playGame() {
     const playerCells = Array.from(
       document.querySelectorAll(".player-grid-item")
     );
-    console.log(playerGrid.classList);
+    // console.log(playerGrid.classList);
     // playerGrid.style.display = "block";
     document.querySelector(".player-grid-container").style.display = "block";
     placeShips();
     // computerShipsPlacement();
     // document.querySelector(".computer-grid-container").style.display = "block";
+    shipsPlaced = true;
+    if (shipsPlaced) {
+      console.log("ships were placed");
+      // const computerCells = Array.from(
+      //   document.querySelectorAll(".computer-grid-item")
+      // );
+      // while (gameOver == false) {
+      //   if (playerShips <= 0) {
+      //     gameOver = true;
+      //     computerWins = true;
+      //   }
+      //   if (computerShips <= 0) {
+      //     gameOver = true;
+      //     playerWins = true;
+      //   } else {
+      //     attack();
+      //   }
+      // }
+    }
   }
 }
 
 function attack() {
+  console.log("in attack");
   // const computerCells = Array.from(
   //   document.querySelectorAll(".computer-grid-item")
   // );
   const playerCells = Array.from(
     document.querySelectorAll(".player-grid-item")
   );
-  let gameOver = false;
-  let computerWins = false;
-  let playerWins = false;
-  let playerTurn = true;
-  let computerTurn = false;
+  // let gameOver = false;
+  // let computerWins = false;
+  // let playerWins = false;
+  // let playerTurn = true;
+  // let computerTurn = false;
 
-  while (!gameOver) {
-    if (playerShips <= 0) {
-      gameOver = true;
-      computerWins = true;
-    }
-    if (computerShips <= 0) {
-      gameOver = true;
-      playerWins = true;
-    }
-    if (playerTurn) {
-      //   computerCells.forEach((cell) => {
-      //   cell.addEventListener("click", () => {
-      //     if (cell.classList.contains("filled")) {
-      //       computerShips--
-      //       cell.classList.remove("filled")
-      //       cell.classList.add("hit")
-      //     } else {
-      //       cell.classList.add("missed")
-      //     }
-      //   })
-      // })
-      playerAttack();
-      playerTurn = false;
-      computerTurn = true;
-      // } else if (computerTurn) {
-      //   computerAttack();
-      //   playerTurn = true;
-      //   computerTurn = false;
-      // }
-    }
-  }
+  // while (!gameOver) {
+  // if (playerShips <= 0) {
+  //   gameOver = true;
+  //   computerWins = true;
+  // }
+  // if (computerShips <= 0) {
+  //   gameOver = true;
+  //   playerWins = true;
+  // }
+  // if (playerTurn) {
+  //   playerAttack();
+  //   playerTurn = false;
+  //   computerTurn = true;
+  // } else if (computerTurn) {
+  //   let hasAttacked = false;
+  //   computerAttack();
+  //   playerTurn = true;
+  //   computerTurn = false;
+  // }
+  // }
 }
 
-function playerAttack() {
-  const computerCells = Array.from(
-    document.querySelectorAll(".computer-grid-item")
-  );
-  computerCells.forEach((cell) => {
-    cell.addEventListener("click", () => {
-      if (cell.classList.contains("filled")) {
-        computerShips--;
-        cell.classList.remove("filled");
-        cell.classList.add("hit");
-      } else {
-        cell.classList.add("missed");
-      }
-    });
-  });
+function playerAttack(cell) {
+  // const computerCells = Array.from(
+  //   document.querySelectorAll(".computer-grid-item")
+  // );
+  // computerCells.forEach((cell) => {
+  // cell.addEventListener("click", () => {
+  if (cell.classList.contains("filled")) {
+    computerShips--;
+    cell.classList.remove("filled");
+    cell.classList.add("hit");
+  } else {
+    cell.classList.add("missed");
+  }
+  // });
+  // });
 }
 
 function computerAttack() {
+  let hasAttacked = false;
+  // while (!hasAttacked) {
   const cellId = getRandomIntInclusive(1, 100);
   console.log("cell id" + cellId);
   const cell = document.getElementById(Number(cellId));
@@ -120,6 +169,10 @@ function computerAttack() {
   } else {
     cell.classList.add("missed");
   }
+  hasAttacked = true;
+  console.log(hasAttacked);
+  // break;
+  // }
 }
 
 // if gamehasstarted:

@@ -49,3 +49,7 @@ h1:hover {
 .missed {
   background-color: yellow;
 }
+
+.filled {
+  background-color: red;
+}
