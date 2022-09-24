@@ -20,13 +20,6 @@
   max-width: 1fr;
 }
 
-/* .player-grid {
-    display: none;
-}
-
-.computer-grid {
-  display: none;
-} */
 
 .player-grid-container, .computer-grid-container {
   display: none;
@@ -56,4 +49,25 @@ h1:hover {
 
 .filledC {
   background-color: pink;
+}
+
+main {
+  margin: 2em;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+  gap: 2em;
+}
+
+button {
+  display: block;
+  margin: auto;
+  font-size: 1.5rem;
+}
+
+h1 {
+  text-align: center;
+}
+
+#play-again {
+  display: none;
 }

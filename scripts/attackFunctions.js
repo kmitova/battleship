@@ -8,6 +8,8 @@ let playerWins = false;
 let playerTurn = true;
 let computerTurn = false;
 
+const resultDiv = document.querySelector(".result");
+
 function attack() {
   const computerCells = Array.from(
     document.querySelectorAll(".computer-grid-item")
@@ -20,8 +22,12 @@ function attack() {
         if (playerShips <= 0) {
           gameOver = true;
           computerWins = true;
+          resultDiv.textContent =
+            "Sorry, you lose, the computer found all of your ships.";
         }
         if (computerShips <= 0) {
+          resultDiv.textContent =
+            "Congrats, you won! You hit all of the computer's ships.";
           gameOver = true;
           playerWins = true;
         }
@@ -43,6 +49,7 @@ function attack() {
         } else if (playerWins) {
           console.log("player wins");
         }
+        document.querySelector("main").style.display = "none";
       }
     });
   });

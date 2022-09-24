@@ -9,7 +9,15 @@
   </head>
   <body>
     <h1>Battleship</h1>
+    <div class="instructions">
+      Click anywhere on the grid to place your ships. Then the computer will
+      automatically fill its own ships. Click on any cell on the computer's grid
+      and try to hit all of it's ships. If you can do this before the computer
+      hits yours, you win!
+    </div>
     <button id="name-btn">Start Game</button>
+
+    <div class="result"></div>
     <main>
       <div class="player-grid-container">
         <div class="player-grid grid"></div>
@@ -19,6 +27,7 @@
         <div class="computer-grid grid"></div>
       </div>
     </main>
+    <button id="play-again">Play Again</button>
     <script src="./scripts/app.js" type="module"></script>
   </body>
 </html>
