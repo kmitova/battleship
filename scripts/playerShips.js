@@ -319,13 +319,13 @@ function computerDestroyerPlacement() {
     let nextEl = document.getElementById(nextId);
     // console.log(nextEl);
     if (
-      !cell.classList.contains("filled") &&
-      !nextEl.classList.contains("filled")
+      !cell.classList.contains("filledC") &&
+      !nextEl.classList.contains("filledC")
     ) {
-      cell.style.backgroundColor = "red";
-      nextEl.style.backgroundColor = "red";
-      cell.classList.add("filled");
-      nextEl.classList.add("filled");
+      // cell.style.backgroundColor = "red";
+      // nextEl.style.backgroundColor = "red";
+      cell.classList.add("filledC");
+      nextEl.classList.add("filledC");
       shipPlaced = true;
       computerCruiserPlacement();
     }
@@ -359,17 +359,17 @@ function computerCruiserPlacement() {
     let nextEl2 = document.getElementById(nextId2);
     // console.log(nextId2);
     if (
-      !cell.classList.contains("filled") &&
-      !nextEl.classList.contains("filled") &&
-      !nextEl2.classList.contains("filled")
+      !cell.classList.contains("filledC") &&
+      !nextEl.classList.contains("filledC") &&
+      !nextEl2.classList.contains("filledC")
     ) {
-      cell.style.backgroundColor = "red";
-      nextEl.style.backgroundColor = "red";
-      nextEl2.style.backgroundColor = "red";
+      // cell.style.backgroundColor = "red";
+      // nextEl.style.backgroundColor = "red";
+      // nextEl2.style.backgroundColor = "red";
 
-      cell.classList.add("filled");
-      nextEl.classList.add("filled");
-      nextEl2.classList.add("filled");
+      cell.classList.add("filledC");
+      nextEl.classList.add("filledC");
+      nextEl2.classList.add("filledC");
 
       shipPlaced = true;
       computerSubmarinePlacement();
@@ -405,17 +405,17 @@ function computerSubmarinePlacement() {
     let nextEl2 = document.getElementById(nextId2);
     // console.log(nextId2);
     if (
-      !cell.classList.contains("filled") &&
-      !nextEl.classList.contains("filled") &&
-      !nextEl2.classList.contains("filled")
+      !cell.classList.contains("filledC") &&
+      !nextEl.classList.contains("filledC") &&
+      !nextEl2.classList.contains("filledC")
     ) {
-      cell.style.backgroundColor = "red";
-      nextEl.style.backgroundColor = "red";
-      nextEl2.style.backgroundColor = "red";
+      // cell.style.backgroundColor = "red";
+      // nextEl.style.backgroundColor = "red";
+      // nextEl2.style.backgroundColor = "red";
 
-      cell.classList.add("filled");
-      nextEl.classList.add("filled");
-      nextEl2.classList.add("filled");
+      cell.classList.add("filledC");
+      nextEl.classList.add("filledC");
+      nextEl2.classList.add("filledC");
 
       shipPlaced = true;
       computerBattleshipPlacement();
@@ -459,20 +459,20 @@ function computerBattleshipPlacement() {
     let nextEl3 = document.getElementById(nextId3);
     // console.log(nextId2);
     if (
-      !cell.classList.contains("filled") &&
-      !nextEl.classList.contains("filled") &&
-      !nextEl2.classList.contains("filled") &&
-      !nextEl3.classList.contains("filled")
+      !cell.classList.contains("filledC") &&
+      !nextEl.classList.contains("filledC") &&
+      !nextEl2.classList.contains("filledC") &&
+      !nextEl3.classList.contains("filledC")
     ) {
-      cell.style.backgroundColor = "red";
-      nextEl.style.backgroundColor = "red";
-      nextEl2.style.backgroundColor = "red";
-      nextEl3.style.backgroundColor = "red";
+      // cell.style.backgroundColor = "red";
+      // nextEl.style.backgroundColor = "red";
+      // nextEl2.style.backgroundColor = "red";
+      // nextEl3.style.backgroundColor = "red";
 
-      cell.classList.add("filled");
-      nextEl.classList.add("filled");
-      nextEl2.classList.add("filled");
-      nextEl3.classList.add("filled");
+      cell.classList.add("filledC");
+      nextEl.classList.add("filledC");
+      nextEl2.classList.add("filledC");
+      nextEl3.classList.add("filledC");
       computerCarrierPlacement();
 
       shipPlaced = true;
@@ -521,23 +521,23 @@ function computerCarrierPlacement() {
     let nextEl4 = document.getElementById(nextId4);
     // console.log(nextId2);
     if (
-      !cell.classList.contains("filled") &&
-      !nextEl.classList.contains("filled") &&
-      !nextEl2.classList.contains("filled") &&
-      !nextEl3.classList.contains("filled") &&
-      !nextEl4.classList.contains("filled")
+      !cell.classList.contains("filledC") &&
+      !nextEl.classList.contains("filledC") &&
+      !nextEl2.classList.contains("filledC") &&
+      !nextEl3.classList.contains("filledC") &&
+      !nextEl4.classList.contains("filledC")
     ) {
-      cell.style.backgroundColor = "red";
-      nextEl.style.backgroundColor = "red";
-      nextEl2.style.backgroundColor = "red";
-      nextEl3.style.backgroundColor = "red";
-      nextEl4.style.backgroundColor = "red";
+      // cell.style.backgroundColor = "red";
+      // nextEl.style.backgroundColor = "red";
+      // nextEl2.style.backgroundColor = "red";
+      // nextEl3.style.backgroundColor = "red";
+      // nextEl4.style.backgroundColor = "red";
 
-      cell.classList.add("filled");
-      nextEl.classList.add("filled");
-      nextEl2.classList.add("filled");
-      nextEl3.classList.add("filled");
-      nextEl4.classList.add("filled");
+      cell.classList.add("filledC");
+      nextEl.classList.add("filledC");
+      nextEl2.classList.add("filledC");
+      nextEl3.classList.add("filledC");
+      nextEl4.classList.add("filledC");
 
       shipPlaced = true;
       document.querySelector(".computer-grid-container").style.display =

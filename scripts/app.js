@@ -15,8 +15,8 @@ let computerWins = false;
 let playerWins = false;
 let playerTurn = true;
 let computerTurn = false;
-let playerShips = 17;
-let computerShips = 17;
+let playerShips = 16;
+let computerShips = 16;
 
 let gameHasStarted = false;
 
@@ -145,9 +145,9 @@ function playerAttack(cell) {
   // );
   // computerCells.forEach((cell) => {
   // cell.addEventListener("click", () => {
-  if (cell.classList.contains("filled")) {
+  if (cell.classList.contains("filledC")) {
     computerShips--;
-    cell.classList.remove("filled");
+    cell.classList.remove("filledC");
     cell.classList.add("hit");
   } else {
     cell.classList.add("missed");
