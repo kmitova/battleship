@@ -1,22 +1,23 @@
 import { generateGrids } from "./grids.js";
-import { placeShips, getRandomIntInclusive } from "./playerShips.js";
+import { placeShips } from "./playerShips.js";
+import { attack } from "./attackFunctions.js";
 
-const playerGrid = document.querySelector(".player-grid");
-const computerGrid = document.querySelector(".computer-grid");
-const defaultColor = "white";
-let destroyerPlaced = false;
-let cruiserPlaced = false;
-let submarinePlaced = false;
-let battleshipPlaced = false;
-let carrierPlaced = false;
-let shipsPlaced = false;
-let gameOver = false;
-let computerWins = false;
-let playerWins = false;
-let playerTurn = true;
-let computerTurn = false;
-let playerShips = 16;
-let computerShips = 16;
+// const playerGrid = document.querySelector(".player-grid");
+// const computerGrid = document.querySelector(".computer-grid");
+// const defaultColor = "white";
+// let destroyerPlaced = false;
+// let cruiserPlaced = false;
+// let submarinePlaced = false;
+// let battleshipPlaced = false;
+// let carrierPlaced = false;
+// let shipsPlaced = false;
+// let gameOver = false;
+// let computerWins = false;
+// let playerWins = false;
+// let playerTurn = true;
+// let computerTurn = false;
+// let playerShips = 16;
+// let computerShips = 16;
 
 let gameHasStarted = false;
 
@@ -25,155 +26,112 @@ const playerName = document.getElementById("name");
 const startBtn = document.getElementById("name-btn");
 let btnClicked = false;
 startBtn.addEventListener("click", () => {
-  btnClicked = true;
-  gameHasStarted = true;
+  // btnClicked = true;
+  // gameHasStarted = true;
   playGame();
-  const computerCells = Array.from(
-    document.querySelectorAll(".computer-grid-item")
-  );
-  computerCells.forEach((cell) => {
-    cell.addEventListener("click", () => {
-      if (!gameOver) {
-        console.log(playerShips);
-        console.log(computerShips);
-        if (playerShips <= 0) {
-          gameOver = true;
-          computerWins = true;
-        }
-        if (computerShips <= 0) {
-          gameOver = true;
-          playerWins = true;
-        }
-        if (playerTurn) {
-          playerAttack(cell);
-          playerTurn = false;
-          computerTurn = true;
-        }
-        if (computerTurn) {
-          let hasAttacked = false;
-          computerAttack();
-          playerTurn = true;
-          computerTurn = false;
-        }
-      }
-      if (gameOver) {
-        console.log("game over");
-        if (computerWins) {
-          console.log("computer wins");
-        } else if (playerWins) {
-          console.log("player wins");
-        }
-      }
-    });
-  });
+  attack();
 });
 
 function playGame() {
-  if (gameHasStarted) {
-    console.log(playerName.value);
-    generateGrids();
-    const playerCells = Array.from(
-      document.querySelectorAll(".player-grid-item")
-    );
-    // console.log(playerGrid.classList);
-    // playerGrid.style.display = "block";
-    document.querySelector(".player-grid-container").style.display = "block";
-    placeShips();
-    // computerShipsPlacement();
-    // document.querySelector(".computer-grid-container").style.display = "block";
-    shipsPlaced = true;
-    if (shipsPlaced) {
-      console.log("ships were placed");
-      // const computerCells = Array.from(
-      //   document.querySelectorAll(".computer-grid-item")
-      // );
-      // while (gameOver == false) {
-      //   if (playerShips <= 0) {
-      //     gameOver = true;
-      //     computerWins = true;
-      //   }
-      //   if (computerShips <= 0) {
-      //     gameOver = true;
-      //     playerWins = true;
-      //   } else {
-      //     attack();
-      //   }
-      // }
-    }
-  }
-}
-
-function attack() {
-  console.log("in attack");
+  // if (gameHasStarted) {
+  //   console.log(playerName.value);
+  generateGrids();
+  // const playerCells = Array.from(
+  //   document.querySelectorAll(".player-grid-item")
+  // );
+  // console.log(playerGrid.classList);
+  // playerGrid.style.display = "block";
+  document.querySelector(".player-grid-container").style.display = "block";
+  placeShips();
+  // computerShipsPlacement();
+  // document.querySelector(".computer-grid-container").style.display = "block";
+  // shipsPlaced = true;
+  // if (shipsPlaced) {
+  //   console.log("ships were placed");
   // const computerCells = Array.from(
   //   document.querySelectorAll(".computer-grid-item")
   // );
-  const playerCells = Array.from(
-    document.querySelectorAll(".player-grid-item")
-  );
-  // let gameOver = false;
-  // let computerWins = false;
-  // let playerWins = false;
-  // let playerTurn = true;
-  // let computerTurn = false;
-
-  // while (!gameOver) {
-  // if (playerShips <= 0) {
-  //   gameOver = true;
-  //   computerWins = true;
+  // while (gameOver == false) {
+  //   if (playerShips <= 0) {
+  //     gameOver = true;
+  //     computerWins = true;
+  //   }
+  //   if (computerShips <= 0) {
+  //     gameOver = true;
+  //     playerWins = true;
+  //   } else {
+  //     attack();
+  //   }
   // }
-  // if (computerShips <= 0) {
-  //   gameOver = true;
-  //   playerWins = true;
-  // }
-  // if (playerTurn) {
-  //   playerAttack();
-  //   playerTurn = false;
-  //   computerTurn = true;
-  // } else if (computerTurn) {
-  //   let hasAttacked = false;
-  //   computerAttack();
-  //   playerTurn = true;
-  //   computerTurn = false;
   // }
   // }
 }
+// function attack() {
+//   const computerCells = Array.from(
+//     document.querySelectorAll(".computer-grid-item")
+//   );
+//   computerCells.forEach((cell) => {
+//     cell.addEventListener("click", () => {
+//       if (!gameOver) {
+//         console.log(playerShips);
+//         console.log(computerShips);
+//         if (playerShips <= 0) {
+//           gameOver = true;
+//           computerWins = true;
+//         }
+//         if (computerShips <= 0) {
+//           gameOver = true;
+//           playerWins = true;
+//         }
+//         if (playerTurn) {
+//           playerAttack(cell);
+//           playerTurn = false;
+//           computerTurn = true;
+//         }
+//         if (computerTurn) {
+//           let hasAttacked = false;
+//           computerAttack();
+//           playerTurn = true;
+//           computerTurn = false;
+//         }
+//       }
+//       if (gameOver) {
+//         console.log("game over");
+//         if (computerWins) {
+//           console.log("computer wins");
+//         } else if (playerWins) {
+//           console.log("player wins");
+//         }
+//       }
+//     });
+//   });
+// }
 
-function playerAttack(cell) {
-  // const computerCells = Array.from(
-  //   document.querySelectorAll(".computer-grid-item")
-  // );
-  // computerCells.forEach((cell) => {
-  // cell.addEventListener("click", () => {
-  if (cell.classList.contains("filledC")) {
-    computerShips--;
-    cell.classList.remove("filledC");
-    cell.classList.add("hit");
-  } else {
-    cell.classList.add("missed");
-  }
-  // });
-  // });
-}
+// function playerAttack(cell) {
+//   if (cell.classList.contains("filledC")) {
+//     computerShips--;
+//     cell.classList.remove("filledC");
+//     cell.classList.add("hit");
+//   } else {
+//     cell.classList.add("missed");
+//   }
+// }
 
-function computerAttack() {
-  let hasAttacked = false;
-  // while (!hasAttacked) {
-  const cellId = getRandomIntInclusive(1, 100);
-  console.log("cell id" + cellId);
-  const cell = document.getElementById(Number(cellId));
-  if (cell.classList.contains("filled")) {
-    playerShips--;
-    cell.classList.remove("filled");
-    cell.classList.add("hit");
-  } else {
-    cell.classList.add("missed");
-  }
-  hasAttacked = true;
-  console.log(hasAttacked);
-  // break;
-  // }
-}
+// function computerAttack() {
+//   let hasAttacked = false;
+//   const cellId = getRandomIntInclusive(1, 100);
+//   console.log("cell id" + cellId);
+//   const cell = document.getElementById(Number(cellId));
+//   if (cell.classList.contains("filled")) {
+//     playerShips--;
+//     cell.classList.remove("filled");
+//     cell.classList.add("hit");
+//   } else {
+//     cell.classList.add("missed");
+//   }
+//   hasAttacked = true;
+//   console.log(hasAttacked);
+// }
 
 // if gamehasstarted:
 // -- display player board
