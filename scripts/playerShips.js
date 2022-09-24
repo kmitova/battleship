@@ -1,4 +1,3 @@
-const defaultColor = "white";
 let destroyerPlaced = false;
 let cruiserPlaced = false;
 let submarinePlaced = false;
@@ -16,34 +15,25 @@ function destroyerPlacement() {
   playerCells.forEach((cell) => {
     cell.addEventListener("click", (e) => {
       let currentId = cell.id;
-      // console.log(cell.id);
       let nextId;
       if (currentId % 10 === 0) {
         nextId = Number(currentId) - 1;
       } else {
         nextId = Number(currentId) + 1;
       }
-      // console.log(nextId);
       let nextEl = document.getElementById(nextId);
-      // console.log(nextEl);
       if (
         !cell.classList.contains("filled") &&
         !nextEl.classList.contains("filled") &&
         !destroyerPlaced
       ) {
-        // cell.style.backgroundColor = "red";
-        // nextEl.style.backgroundColor = "red";
         cell.classList.add("filled");
         nextEl.classList.add("filled");
         destroyerPlaced = true;
         cruiserPlacement();
       }
-
-      // LATER ENABLE WITH A FOR EACH LOOP FOR EACH CELL ELEMENT
       cell.disabled = true;
       nextEl.disabled = true;
-      // e.preventDefault();
-      // nextEl.preventDefault();
     });
   });
 }
@@ -56,7 +46,6 @@ function cruiserPlacement() {
   playerCells.forEach((cell) => {
     cell.addEventListener("click", () => {
       let currentId = cell.id;
-      // console.log(cell.id);
       let nextId;
       let nextId2;
       if (currentId % 10 === 0 || currentId % 10 === 9) {
@@ -66,21 +55,14 @@ function cruiserPlacement() {
         nextId = Number(currentId) + 1;
         nextId2 = Number(currentId) + 2;
       }
-      // console.log(nextId);
       let nextEl = document.getElementById(nextId);
-      // console.log(nextEl);
-
       let nextEl2 = document.getElementById(nextId2);
-      // console.log(nextId2);
       if (
         !cell.classList.contains("filled") &&
         !nextEl.classList.contains("filled") &&
         !nextEl2.classList.contains("filled") &&
         !cruiserPlaced
       ) {
-        // cell.style.backgroundColor = "red";
-        // nextEl.style.backgroundColor = "red";
-        // nextEl2.style.backgroundColor = "red";
         cell.classList.add("filled");
         nextEl.classList.add("filled");
         nextEl2.classList.add("filled");
@@ -103,7 +85,6 @@ function submarinePlacement() {
   playerCells.forEach((cell) => {
     cell.addEventListener("click", () => {
       let currentId = cell.id;
-      // console.log(cell.id);
       let nextId;
       let nextId2;
       if (currentId % 10 === 0 || currentId % 10 === 9) {
@@ -113,21 +94,14 @@ function submarinePlacement() {
         nextId = Number(currentId) + 1;
         nextId2 = Number(currentId) + 2;
       }
-      // console.log(nextId);
       let nextEl = document.getElementById(nextId);
-      // console.log(nextEl);
-
       let nextEl2 = document.getElementById(nextId2);
-      // console.log(nextId2);
       if (
         !cell.classList.contains("filled") &&
         !nextEl.classList.contains("filled") &&
         !nextEl2.classList.contains("filled") &&
         !submarinePlaced
       ) {
-        // cell.style.backgroundColor = "red";
-        // nextEl.style.backgroundColor = "red";
-        // nextEl2.style.backgroundColor = "red";
         cell.classList.add("filled");
         nextEl.classList.add("filled");
         nextEl2.classList.add("filled");
@@ -141,7 +115,6 @@ function submarinePlacement() {
     });
   });
 }
-// submarinePlacement();
 
 // BATTLESHIP 4 FIELDS
 function battleshipPlacement() {
@@ -151,7 +124,6 @@ function battleshipPlacement() {
   playerCells.forEach((cell) => {
     cell.addEventListener("click", () => {
       let currentId = cell.id;
-      // console.log("current: " + cell.id);
       let nextId;
       let nextId2;
       let nextId3;
@@ -172,7 +144,6 @@ function battleshipPlacement() {
         nextId2 = Number(currentId) + 2;
         nextId3 = Number(currentId) + 3;
       }
-      // console.log(currentId, nextId, nextId2, nextId3);
       let nextEl = document.getElementById(nextId);
       let nextEl2 = document.getElementById(nextId2);
       let nextEl3 = document.getElementById(nextId3);
@@ -184,11 +155,6 @@ function battleshipPlacement() {
         !nextEl3.classList.contains("filled") &&
         !battleshipPlaced
       ) {
-        // cell.style.backgroundColor = "red";
-        // nextEl.style.backgroundColor = "red";
-        // nextEl2.style.backgroundColor = "red";
-        // nextEl3.style.backgroundColor = "red";
-
         cell.classList.add("filled");
         nextEl.classList.add("filled");
         nextEl2.classList.add("filled");
@@ -213,7 +179,6 @@ function carrierPlacement() {
   playerCells.forEach((cell) => {
     cell.addEventListener("click", () => {
       let currentId = cell.id;
-      // console.log("current: " + cell.id);
       let nextId;
       let nextId2;
       let nextId3;
@@ -244,7 +209,6 @@ function carrierPlacement() {
         nextId3 = Number(currentId) + 3;
         nextId4 = Number(currentId) + 4;
       }
-      // console.log(currentId, nextId, nextId2, nextId3, nextId4);
       let nextEl = document.getElementById(nextId);
       let nextEl2 = document.getElementById(nextId2);
       let nextEl3 = document.getElementById(nextId3);
@@ -258,12 +222,6 @@ function carrierPlacement() {
         !nextEl4.classList.contains("filled") &&
         !carrierPlaced
       ) {
-        // cell.style.backgroundColor = "red";
-        // nextEl.style.backgroundColor = "red";
-        // nextEl2.style.backgroundColor = "red";
-        // nextEl3.style.backgroundColor = "red";
-        // nextEl4.style.backgroundColor = "red";
-
         cell.classList.add("filled");
         nextEl.classList.add("filled");
         nextEl2.classList.add("filled");
@@ -284,65 +242,44 @@ function computerShipsPlacement() {
   const computerCells = Array.from(
     document.querySelectorAll(".computer-grid-item")
   );
-  // document.querySelector(".computer-grid-container").style.display = "block";
   computerDestroyerPlacement();
-  // computerCruiserPlacement();
-  // computerSubmarinePlacement();
-  // computerBattleshipPlacement();
-  // computerCarrierPlacement();
 }
-// console.log(computerCells);
-
-// 1. get random number for cell for computer and change class name of clicked cell and (for now) add color which will be removed for the game
 
 function getRandomIntInclusive(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1) + min); // The maximum is inclusive and the minimum is inclusive
+  return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
 function computerDestroyerPlacement() {
   let shipPlaced = false;
   while (!shipPlaced) {
     let selectedCellId = getRandomIntInclusive(101, 200);
-    // console.log(selectedCellId);
     let cell = document.getElementById(selectedCellId);
-    // console.log(cell);
-
     let nextId;
     if (selectedCellId % 10 === 0) {
       nextId = Number(selectedCellId) - 1;
     } else {
       nextId = Number(selectedCellId) + 1;
     }
-    // console.log(nextId);
     let nextEl = document.getElementById(nextId);
-    // console.log(nextEl);
     if (
       !cell.classList.contains("filledC") &&
       !nextEl.classList.contains("filledC")
     ) {
-      // cell.style.backgroundColor = "red";
-      // nextEl.style.backgroundColor = "red";
       cell.classList.add("filledC");
       nextEl.classList.add("filledC");
       shipPlaced = true;
       computerCruiserPlacement();
     }
-
-    // LATER ENABLE WITH A FOR EACH LOOP FOR EACH CELL ELEMENT
-    // cell.disabled = true;
-    // nextEl.disabled = true;
   }
 }
+
 function computerCruiserPlacement() {
   let shipPlaced = false;
   while (!shipPlaced) {
     let selectedCellId = getRandomIntInclusive(101, 200);
-    // console.log(selectedCellId);
     let cell = document.getElementById(selectedCellId);
-    // console.log(cell);
-
     let nextId;
     let nextId2;
     if (selectedCellId % 10 === 0 || selectedCellId % 10 === 9) {
@@ -352,21 +289,13 @@ function computerCruiserPlacement() {
       nextId = Number(selectedCellId) + 1;
       nextId2 = Number(selectedCellId) + 2;
     }
-    // console.log(nextId);
     let nextEl = document.getElementById(nextId);
-    // console.log(nextEl);
-
     let nextEl2 = document.getElementById(nextId2);
-    // console.log(nextId2);
     if (
       !cell.classList.contains("filledC") &&
       !nextEl.classList.contains("filledC") &&
       !nextEl2.classList.contains("filledC")
     ) {
-      // cell.style.backgroundColor = "red";
-      // nextEl.style.backgroundColor = "red";
-      // nextEl2.style.backgroundColor = "red";
-
       cell.classList.add("filledC");
       nextEl.classList.add("filledC");
       nextEl2.classList.add("filledC");
@@ -374,10 +303,6 @@ function computerCruiserPlacement() {
       shipPlaced = true;
       computerSubmarinePlacement();
     }
-
-    // cell.disabled = true;
-    // nextEl.disabled = true;
-    // nextEl2.disabled = true;
   }
 }
 
@@ -385,10 +310,7 @@ function computerSubmarinePlacement() {
   let shipPlaced = false;
   while (!shipPlaced) {
     let selectedCellId = getRandomIntInclusive(101, 200);
-    // console.log(selectedCellId);
     let cell = document.getElementById(selectedCellId);
-    // console.log(cell);
-
     let nextId;
     let nextId2;
     if (selectedCellId % 10 === 0 || selectedCellId % 10 === 9) {
@@ -398,21 +320,13 @@ function computerSubmarinePlacement() {
       nextId = Number(selectedCellId) + 1;
       nextId2 = Number(selectedCellId) + 2;
     }
-    // console.log(nextId);
     let nextEl = document.getElementById(nextId);
-    // console.log(nextEl);
-
     let nextEl2 = document.getElementById(nextId2);
-    // console.log(nextId2);
     if (
       !cell.classList.contains("filledC") &&
       !nextEl.classList.contains("filledC") &&
       !nextEl2.classList.contains("filledC")
     ) {
-      // cell.style.backgroundColor = "red";
-      // nextEl.style.backgroundColor = "red";
-      // nextEl2.style.backgroundColor = "red";
-
       cell.classList.add("filledC");
       nextEl.classList.add("filledC");
       nextEl2.classList.add("filledC");
@@ -420,10 +334,6 @@ function computerSubmarinePlacement() {
       shipPlaced = true;
       computerBattleshipPlacement();
     }
-
-    // cell.disabled = true;
-    // nextEl.disabled = true;
-    // nextEl2.disabled = true;
   }
 }
 
@@ -431,10 +341,7 @@ function computerBattleshipPlacement() {
   let shipPlaced = false;
   while (!shipPlaced) {
     let selectedCellId = getRandomIntInclusive(101, 200);
-    // console.log(selectedCellId);
     let cell = document.getElementById(selectedCellId);
-    // console.log(cell);
-
     let nextId;
     let nextId2;
     let nextId3;
@@ -451,24 +358,17 @@ function computerBattleshipPlacement() {
       nextId2 = Number(selectedCellId) + 2;
       nextId3 = Number(selectedCellId) + 3;
     }
-    // console.log(nextId);
-    let nextEl = document.getElementById(nextId);
-    // console.log(nextEl);
 
+    let nextEl = document.getElementById(nextId);
     let nextEl2 = document.getElementById(nextId2);
     let nextEl3 = document.getElementById(nextId3);
-    // console.log(nextId2);
+
     if (
       !cell.classList.contains("filledC") &&
       !nextEl.classList.contains("filledC") &&
       !nextEl2.classList.contains("filledC") &&
       !nextEl3.classList.contains("filledC")
     ) {
-      // cell.style.backgroundColor = "red";
-      // nextEl.style.backgroundColor = "red";
-      // nextEl2.style.backgroundColor = "red";
-      // nextEl3.style.backgroundColor = "red";
-
       cell.classList.add("filledC");
       nextEl.classList.add("filledC");
       nextEl2.classList.add("filledC");
@@ -477,10 +377,6 @@ function computerBattleshipPlacement() {
 
       shipPlaced = true;
     }
-
-    // cell.disabled = true;
-    // nextEl.disabled = true;
-    // nextEl2.disabled = true;
   }
 }
 
@@ -488,9 +384,7 @@ function computerCarrierPlacement() {
   let shipPlaced = false;
   while (!shipPlaced) {
     let selectedCellId = getRandomIntInclusive(101, 200);
-    // console.log(selectedCellId);
     let cell = document.getElementById(selectedCellId);
-    // console.log(cell);
 
     let nextId;
     let nextId2;
@@ -512,14 +406,11 @@ function computerCarrierPlacement() {
       nextId3 = Number(selectedCellId) + 3;
       nextId4 = Number(selectedCellId) + 4;
     }
-    // console.log(nextId);
     let nextEl = document.getElementById(nextId);
-    // console.log(nextEl);
 
     let nextEl2 = document.getElementById(nextId2);
     let nextEl3 = document.getElementById(nextId3);
     let nextEl4 = document.getElementById(nextId4);
-    // console.log(nextId2);
     if (
       !cell.classList.contains("filledC") &&
       !nextEl.classList.contains("filledC") &&
@@ -527,12 +418,6 @@ function computerCarrierPlacement() {
       !nextEl3.classList.contains("filledC") &&
       !nextEl4.classList.contains("filledC")
     ) {
-      // cell.style.backgroundColor = "red";
-      // nextEl.style.backgroundColor = "red";
-      // nextEl2.style.backgroundColor = "red";
-      // nextEl3.style.backgroundColor = "red";
-      // nextEl4.style.backgroundColor = "red";
-
       cell.classList.add("filledC");
       nextEl.classList.add("filledC");
       nextEl2.classList.add("filledC");
@@ -543,10 +428,6 @@ function computerCarrierPlacement() {
       document.querySelector(".computer-grid-container").style.display =
         "block";
     }
-
-    // cell.disabled = true;
-    // nextEl.disabled = true;
-    // nextEl2.disabled = true;
   }
 }
 

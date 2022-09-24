@@ -7,6 +7,7 @@ let computerWins = false;
 let playerWins = false;
 let playerTurn = true;
 let computerTurn = false;
+
 function attack() {
   const computerCells = Array.from(
     document.querySelectorAll(".computer-grid-item")
@@ -30,7 +31,6 @@ function attack() {
           computerTurn = true;
         }
         if (computerTurn) {
-          let hasAttacked = false;
           computerAttack();
           playerTurn = true;
           computerTurn = false;
@@ -59,9 +59,7 @@ function playerAttack(cell) {
 }
 
 function computerAttack() {
-  let hasAttacked = false;
   const cellId = getRandomIntInclusive(1, 100);
-  console.log("cell id" + cellId);
   const cell = document.getElementById(Number(cellId));
   if (cell.classList.contains("filled")) {
     playerShips--;
@@ -70,8 +68,6 @@ function computerAttack() {
   } else {
     cell.classList.add("missed");
   }
-  hasAttacked = true;
-  console.log(hasAttacked);
 }
 
 export { attack };
