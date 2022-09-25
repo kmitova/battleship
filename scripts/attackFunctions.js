@@ -50,6 +50,7 @@ function attack() {
           console.log("player wins");
         }
         document.querySelector("main").style.display = "none";
+        document.querySelector(".result").style.display = "block";
       }
     });
   });

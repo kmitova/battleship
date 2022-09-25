@@ -9,6 +9,7 @@ startBtn.addEventListener("click", () => {
   playGame();
   attack();
   playAgainBtn.style.display = "block";
+  document.querySelector(".instructions").style.display = "none";
 });
 
 playAgainBtn.addEventListener("click", () => {
